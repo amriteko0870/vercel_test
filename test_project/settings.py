@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-+b)!+ot)*u5&xhoj6&h$uuc78%5_rp@zxnfaz@2oim&9qm&=vd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['']
+# ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -37,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'test_app'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +122,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#----------------------------------------------------------------
+import os
+ALLOWED_HOSTS = ALLOWED_HOSTS + ['*']
+INSTALLED_APPS = INSTALLED_APPS + ['test_app']
+INSTALLED_APPS = INSTALLED_APPS + ['rest_framework','corsheaders',]
+MIDDLEWARE = MIDDLEWARE + ['corsheaders.middleware.CorsMiddleware',]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+                            'http://localhost:8081',
+                        )
